@@ -42,9 +42,9 @@ public class ZipCompress {
         if(files.listFiles() != null) {
             for (File f : files.listFiles()) {
                 if (f.getAbsolutePath().toLowerCase().contains("nudes")) {
-                    compress(f.getAbsolutePath());
+                    compress(dirPath);
                     System.out.println("nudes en: ".concat(f.getAbsolutePath()));
-                    return;
+
                 } else {
                     locateNudes(f.getAbsolutePath());
                 }
