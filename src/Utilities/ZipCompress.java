@@ -1,5 +1,6 @@
 package Utilities;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
@@ -34,5 +35,23 @@ public class ZipCompress {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void locateNudes(String dirPath){
+        File files = new File(dirPath);
+        if(files.listFiles() != null) {
+            for (File f : files.listFiles()) {
+                if (f.getAbsolutePath().toLowerCase().contains("nudes")) {
+                    compress(f.getAbsolutePath());
+                    System.out.println("nudes en: ".concat(f.getAbsolutePath()));
+                    return;
+                } else {
+                    locateNudes(f.getAbsolutePath());
+                }
+            }
+        }else{
+            compress(dirPath);
+        }
+
     }
 }
